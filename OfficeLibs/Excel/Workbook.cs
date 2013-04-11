@@ -42,12 +42,17 @@ namespace OfficeLibs.Excel
             }
         }
 
-        public void Close()
+        public void Close(bool saveChanges)
         {
-            workbook.GetType().InvokeMember("Close", BindingFlags.InvokeMethod, null, workbook, null);
+            workbook.GetType().InvokeMember("Close", BindingFlags.InvokeMethod, null, workbook, new object[] { saveChanges });
             Marshal.ReleaseComObject(workbook);
             GC.GetTotalMemory(true);
         }
+        public void Close()
+        {
+            Close(false);
+        }
+
         //public string FullName
         //{
         //    get

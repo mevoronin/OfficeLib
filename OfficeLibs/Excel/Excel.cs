@@ -25,6 +25,17 @@ namespace OfficeLibs.Excel
                 application.GetType().InvokeMember("Visible", BindingFlags.SetProperty, null, application, new object[] { value });
             }
         }
+        public bool CutCopyMode
+        {
+            get
+            {
+                return Convert.ToBoolean(application.GetType().InvokeMember("CutCopyMode", BindingFlags.GetProperty, null, application, null));
+            }
+            set
+            {
+                application.GetType().InvokeMember("CutCopyMode", BindingFlags.SetProperty, null, application, new object[] { value });
+            }
+        }
 
         public void Quit()
         {

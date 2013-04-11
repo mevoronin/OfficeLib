@@ -39,21 +39,26 @@ namespace OfficeLibs.Excel
                 worksheet.GetType().InvokeMember("Name", BindingFlags.SetProperty, null, worksheet, new object[] { value });
             }
         }
+        public void Paste()
+        {
+            worksheet.GetType().InvokeMember("Paste", BindingFlags.InvokeMethod, null, worksheet, null);
+        }
+        public void Select()
+        {
+            worksheet.GetType().InvokeMember("Select", BindingFlags.InvokeMethod, null, worksheet, null);
+        }
+
         public string getRangeAdress(int row, int column)
         {
-            char[] abc = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-            StringBuilder sb = new StringBuilder();
-            if (column > 0)
+            string result = "";
+            column = column - 1;
+            while (column >= 26)
             {
-                var multi = (int)Math.Floor(((decimal)column / 26));
-                if (multi > 0)
-                {
-                    sb.Append(abc[multi - 1]);
-                }
-                sb.Append(abc[(column % 26) - 1]);
+                result = Convert.ToChar(65 + (column % 26)) + result;
+                column = (column / 26) - 1;
             }
-            sb.Append(row);
-            return sb.ToString(); ;
+            return Convert.ToChar(65 + column) + result + row.ToString();
         }
+
     }
 }
