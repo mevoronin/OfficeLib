@@ -33,6 +33,11 @@ namespace OfficeLibs.Excel
         xlCellTypeSameValidation = -4175,
         xlCellTypeVisible = 12
     }
+    public enum XlDeleteShiftDirection
+    {
+        xlShiftToLeft = -4159, //Cells are shifted to the left. 
+        xlShiftUp = -4162 //Cells are shifted up. 
+    }
     /// <summary>
     /// Summary description for Range
     /// </summary>
@@ -82,6 +87,17 @@ namespace OfficeLibs.Excel
         }
 
         public object NumberFormat
+        {
+            get
+            {
+                return range.GetType().InvokeMember("NumberFormat", BindingFlags.GetProperty, null, range, null);
+            }
+            set
+            {
+                range.GetType().InvokeMember("NumberFormat", BindingFlags.SetProperty, null, range, new object[] { value });
+            }
+        }
+        public object NumberFormatLocal
         {
             get
             {
@@ -149,6 +165,14 @@ namespace OfficeLibs.Excel
             object entireRow = range.GetType().InvokeMember("EntireRow", BindingFlags.GetProperty, null, range, null);
             entireRow.GetType().InvokeMember("Insert", BindingFlags.InvokeMethod, null, entireRow, null);
         }
+        public void Delete()
+        {
+            range.GetType().InvokeMember("Delete", BindingFlags.InvokeMethod, null, range, null);
+        }
+        public void Delete(XlDeleteShiftDirection deleteDirection)
+        {
+            range.GetType().InvokeMember("Delete", BindingFlags.InvokeMethod, null, range, new object[] { deleteDirection });
+        }
         public void RowsAutoFit()
         {
             object entireRow = range.GetType().InvokeMember("EntireRow", BindingFlags.GetProperty, null, range, null);
@@ -165,5 +189,19 @@ namespace OfficeLibs.Excel
         }
         public int Row { get { return Convert.ToInt32(range.GetType().InvokeMember("Row", BindingFlags.GetProperty, null, range, null)); } }
         public int Column { get { return Convert.ToInt32(range.GetType().InvokeMember("Column", BindingFlags.GetProperty, null, range, null)); } }
+
+        public void Copy()
+        {
+            range.GetType().InvokeMember("Copy", BindingFlags.InvokeMethod, null, range, null);
+        }
+        public void Select()
+        {
+            range.GetType().InvokeMember("Select", BindingFlags.InvokeMethod, null, range, null);
+        }
+        public void PasteSpecial()
+        {
+            range.GetType().InvokeMember("PasteSpecial", BindingFlags.InvokeMethod, null, range, null);
+        }
+
     }
 }
