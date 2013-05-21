@@ -3,7 +3,7 @@ using System;
 
 namespace OfficeLibs.Excel
 {
-    public enum ColorIndex
+    public enum ColorIndexEnum
     {
         None = -4142,
         Auto = -4105,
@@ -20,6 +20,18 @@ namespace OfficeLibs.Excel
         Perlamutr = 33,
         Phiolet = 47
     }
+    public enum ColorEnum
+    {
+        Black=0,
+        Blue=16711680,
+        Cyan = 16776960 ,
+        Green = 65280 ,
+        Magenta = 16711935 ,
+        Red = 255 ,
+        White = 16777215 ,
+        Yellow = 65535 
+    }
+
     public enum XlCellType
     {
         xlCellTypeAllFormatConditions = -4172,
@@ -138,13 +150,31 @@ namespace OfficeLibs.Excel
         {
             range = _range;
         }
-        public ColorIndex ColorIndex
+        public ColorIndexEnum ColorIndex
         {
             set
             {
                 object interior = range.GetType().InvokeMember("Interior", BindingFlags.GetProperty, null, range, null);
                 interior.GetType().InvokeMember("ColorIndex", BindingFlags.SetProperty, null, interior, new object[] { (int)value });
             }
+        }
+        public ColorEnum Color
+        {
+            set
+            {
+                object font = range.GetType().InvokeMember("Font", BindingFlags.GetProperty, null, range, null);
+                font.GetType().InvokeMember("Color", BindingFlags.SetProperty, null, font, new object[] { (int)value });
+            }
+        }
+        public void SetColor(ColorEnum color)
+        {
+            object font = range.GetType().InvokeMember("Font", BindingFlags.GetProperty, null, range, null);
+            font.GetType().InvokeMember("Color", BindingFlags.SetProperty, null, font, new object[] { (int)color });
+        }
+        public void SetColor(int color)
+        {
+            object font = range.GetType().InvokeMember("Font", BindingFlags.GetProperty, null, range, null);
+            font.GetType().InvokeMember("Color", BindingFlags.SetProperty, null, font, new object[] { color });
         }
         public bool Bold
         {
