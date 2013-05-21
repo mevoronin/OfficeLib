@@ -20,12 +20,12 @@ namespace Tester
         private void button1_Click(object sender, EventArgs e)
         {
             Excel excel = new Excel();
-            Workbook book = excel.Workbooks.Open("C:\\Users\\MEVoronin\\Desktop\\export.xls.xls");
+            Workbook book = excel.Workbooks.Add();
             excel.Visible = true;
             Worksheet sheet = book.Worksheets.get_Worksheet(1);
-            Range range = sheet.Range("A1").SpecialCells(XlCellType.xlCellTypeLastCell);
-            string footer = string.Format("{0}:{1}", sheet.getRangeAdress(range.Row, 1), sheet.getRangeAdress(range.Row, 50));
-            sheet.Range(footer).MergeCells = false;
+            Range range = sheet.Range("A1");
+            range.Value = "test";
+            range.SetColor(ColorEnum.Green);
         }
     }
 }
