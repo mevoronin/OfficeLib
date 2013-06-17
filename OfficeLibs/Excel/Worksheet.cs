@@ -15,6 +15,10 @@ namespace OfficeLibs.Excel
         {
             return new Range(worksheet.GetType().InvokeMember("Range", BindingFlags.GetProperty, null, worksheet, new object[] { range }));
         }
+        public Range Range(Range cell1, Range cell2)
+        {
+            return new Range(worksheet.GetType().InvokeMember("Range", BindingFlags.GetProperty, null, worksheet, new object[] { string.Format("{0}:{1}", getRangeAdress(cell1.Row, cell1.Column), getRangeAdress(cell2.Row, cell2.Column)) }));
+        }
         public Range Cell(int row, int column)
         {
             return new Range(worksheet.GetType().InvokeMember("Range", BindingFlags.GetProperty, null, worksheet, new object[] { getRangeAdress(row, column) }));
