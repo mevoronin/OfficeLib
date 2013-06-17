@@ -47,5 +47,9 @@
         xlShiftToLeft = -4159, //Cells are shifted to the left. 
         xlShiftUp = -4162 //Cells are shifted up. 
     }
-
+    public enum XlInsertShiftDirection
+    {
+        xlShiftDown = -4121,
+        xlShiftToRight = -4161
+    }
 }

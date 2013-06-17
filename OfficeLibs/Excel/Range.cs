@@ -142,11 +142,25 @@ namespace OfficeLibs.Excel
                 interior.GetType().InvokeMember("Bold", BindingFlags.SetProperty, null, interior, new object[] { value });
             }
         }
-
+        public void Insert(XlInsertShiftDirection? shiftDirection)
+        {
+            object[] param = null;
+            if (shiftDirection.HasValue)
+                param = new object[] { shiftDirection.Value };
+            range.GetType().InvokeMember("Insert", BindingFlags.InvokeMethod, null, range, param);
+        }
+        public object EntireRow()
+        {
+            return range.GetType().InvokeMember("EntireRow", BindingFlags.GetProperty, null, range, null);
+        }
         public void Insert()
         {
+            Insert(null);
+        }
+        public void InsertEntireRow()
+        {
             object entireRow = range.GetType().InvokeMember("EntireRow", BindingFlags.GetProperty, null, range, null);
-            entireRow.GetType().InvokeMember("Insert", BindingFlags.InvokeMethod, null, entireRow, null);
+            range.GetType().InvokeMember("Insert", BindingFlags.InvokeMethod, null, entireRow, null);
         }
         public void Delete()
         {
