@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Excel\Enums.cs" />
     <Compile Include="Excel\Excel.cs" />
     <Compile Include="Excel\Range.cs" />
     <Compile Include="Excel\Workbook.cs" />

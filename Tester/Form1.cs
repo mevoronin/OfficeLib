@@ -24,8 +24,18 @@ namespace Tester
             excel.Visible = true;
             Worksheet sheet = book.Worksheets.get_Worksheet(1);
             Range range = sheet.Range("A1");
-            range.Value = "test";
-            range.SetColor(ColorEnum.Green);
+            range.Value = "A1";
+            range = sheet.Range("A3");
+            range.Value = "A3";
+            excel.CutCopyMode = false;
+            range.Copy();
+            range = sheet.Range("B3");
+            range.Value = "B3";
+
+            range = sheet.Range("A2");
+            range.Insert(XlInsertShiftDirection.xlShiftDown);
+            range = sheet.Range("A3");
+            range.InsertEntireRow();
         }
     }
 }
