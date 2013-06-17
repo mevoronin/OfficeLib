@@ -7,7 +7,7 @@ namespace OfficeLibs.Excel
     /// <summary>
     /// Summary description for Workbook
     /// </summary>
-    public class Workbook
+    public class Workbook : IDisposable
     {
         private object workbook;
 
@@ -75,6 +75,18 @@ namespace OfficeLibs.Excel
         public Workbook(object _workbook)
         {
             workbook = _workbook;
+        }
+
+        public void Dispose()
+        {
+            try
+            {
+                Close(false);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Неудача при попытке Dispose объекта Workbook", ex);
+            }
         }
     }
 }
