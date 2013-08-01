@@ -23,18 +23,8 @@ namespace Tester
             Workbook book = excel.Workbooks.Add();
             excel.Visible = true;
             Worksheet sheet = book.Worksheets.get_Worksheet(1);
-            sheet.Cell(1, 1).Value = "11";
-            sheet.Cell(1, 2).Value = "12";
-            sheet.Cell(1, 3).Value = "13";
-
-            sheet.Cell(2, 1).Value = "21";
-            sheet.Cell(2, 2).Value = "22";
-            sheet.Cell(2, 3).Value = "23";
-
-            sheet.Cell(3, 1).Value = "31";
-            sheet.Cell(3, 2).Value = "32";
-            sheet.Cell(3, 3).Value = "33";
-            sheet.Range(sheet.Cell(1, 1), sheet.Cell(2, 3)).Delete(XlDeleteShiftDirection.xlShiftUp);
+            sheet.Cell(3, 3).Value = "раз два три четыре пять";
+            sheet.Cell(3, 3).WrapText = true;
         }
     }
 }

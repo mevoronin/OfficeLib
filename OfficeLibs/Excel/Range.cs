@@ -142,6 +142,17 @@ namespace OfficeLibs.Excel
                 interior.GetType().InvokeMember("Bold", BindingFlags.SetProperty, null, interior, new object[] { value });
             }
         }
+        public bool WrapText
+        {
+            get
+            {
+                return (bool)range.GetType().InvokeMember("WrapText", BindingFlags.GetProperty, null, range, null);
+            }
+            set
+            {
+                range.GetType().InvokeMember("WrapText", BindingFlags.SetProperty, null, range, new object[] { value });
+            }
+        }
         public void Insert(XlInsertShiftDirection? shiftDirection)
         {
             object[] param = null;
