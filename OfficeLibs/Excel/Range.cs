@@ -221,6 +221,28 @@ namespace OfficeLibs.Excel
         {
             range.GetType().InvokeMember("PasteSpecial", BindingFlags.InvokeMethod, null, range, null);
         }
+        public Constants HorizontalAlignment
+        {
+            get
+            {
+                return (Constants)range.GetType().InvokeMember("HorizontalAlignment", BindingFlags.GetProperty, null, range, null);
+            }
+            set
+            {
+                range.GetType().InvokeMember("HorizontalAlignment", BindingFlags.SetProperty, null, range, new object[] { value });
+            }
+        }
+        public Constants VerticalAlignment
+        {
+            get
+            {
+                return (Constants)range.GetType().InvokeMember("VerticalAlignment", BindingFlags.GetProperty, null, range, null);
+            }
+            set
+            {
+                range.GetType().InvokeMember("VerticalAlignment", BindingFlags.SetProperty, null, range, new object[] { value });
+            }
+        }
 
     }
 }

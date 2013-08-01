@@ -52,4 +52,13 @@
         xlShiftDown = -4121,
         xlShiftToRight = -4161
     }
+    public enum Constants
+    {
+        xlCenter = -4108,
+        xlDistributed = -4117,
+        xlJustify = -4130,
+        xlLeft = -4131,
+        xlRight = -4152,
+        xlGeneral = 1
+    }
 }
