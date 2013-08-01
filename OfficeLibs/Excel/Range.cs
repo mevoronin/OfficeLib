@@ -87,6 +87,17 @@ namespace OfficeLibs.Excel
                 range.GetType().InvokeMember("ColumnWidth", BindingFlags.SetProperty, null, range, new object[] { value });
             }
         }
+        public object RowHeight
+        {
+            get
+            {
+                return range.GetType().InvokeMember("RowHeight", BindingFlags.GetProperty, null, range, null);
+            }
+            set
+            {
+                range.GetType().InvokeMember("RowHeight", BindingFlags.SetProperty, null, range, new object[] { value });
+            }
+        }
         public bool MergeCells
         {
             get
