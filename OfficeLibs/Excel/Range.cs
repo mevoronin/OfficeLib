@@ -66,11 +66,11 @@ namespace OfficeLibs.Excel
         {
             get
             {
-                return range.GetType().InvokeMember("NumberFormat", BindingFlags.GetProperty, null, range, null);
+                return range.GetType().InvokeMember("NumberFormatLocal", BindingFlags.GetProperty, null, range, null);
             }
             set
             {
-                range.GetType().InvokeMember("NumberFormat", BindingFlags.SetProperty, null, range, new object[] { value });
+                range.GetType().InvokeMember("NumberFormatLocal", BindingFlags.SetProperty, null, range, new object[] { value });
             }
         }
         /// <summary>
